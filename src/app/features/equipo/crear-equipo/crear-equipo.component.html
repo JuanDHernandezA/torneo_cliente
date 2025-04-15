@@ -1,0 +1,58 @@
+<h2 class="textos">Crear Equipo</h2>
+
+<form class="example-form" (ngSubmit)="registrarEquipo()">
+    <mat-form-field class="example-full-width">
+        <mat-label>Nombre del Equipo</mat-label>
+        <input matInput [(ngModel)]="equipo.nombre_equipo" name="nombre">
+    </mat-form-field>
+
+
+    <h3 class="textos">Agregar Jugadores</h3>
+
+    <app-crear-jugador 
+        (jugadorAgregado)="ingresarJugador($event)" 
+        [jugadorEditado]="jugadorEnEdicion"
+        (jugadorActualizado)="actualizarJugador($event)">
+    </app-crear-jugador>
+
+    <div>
+        <p class="mensaje-error" [ngStyle]="{ 'opacity': mostrar_error, 'color': color_mensaje_error}">{{mensaje_error}}</p>
+    </div>
+   
+    <br>
+    <div class="tabla center">
+        <table mat-table [dataSource]="jugadores" class="mat-elevation-z8">
+            <ng-container matColumnDef="nombre_jugador">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let jugador"> {{ jugador.nombre_jugador }} @if (jugador.es_capitan) {
+                    <mat-icon style="float: right;" fontIcon="copyright"></mat-icon> } </td>
+            </ng-container>
+
+            <ng-container matColumnDef="numero_jugador">
+                <th mat-header-cell *matHeaderCellDef> Dorsal </th>
+                <td mat-cell *matCellDef="let jugador"> {{ jugador.numero_jugador }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="posicion">
+                <th mat-header-cell *matHeaderCellDef> Posición </th>
+                <td mat-cell *matCellDef="let jugador"> {{ jugador.id_posicion }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                <td mat-cell *matCellDef="let jugador">
+                    <button mat-icon-button (click)="prepararEdicion(jugador)">
+                        <mat-icon fontIcon="edit"></mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="eliminarJugador(jugador)">
+                        <mat-icon fontIcon="delete"></mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+    <button class="boton_submit" type="submit" mat-raised-button>Crear Equipo</button>
+</form>

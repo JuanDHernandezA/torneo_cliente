@@ -1,0 +1,29 @@
+<form class="example-form" (ngSubmit)="registrarJugador()">
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre Completo</mat-label>
+                    <input matInput [(ngModel)]="jugador.nombre_jugador" name="nombre_jugador">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Dorsal</mat-label>
+                    <input matInput [(ngModel)]="jugador.numero_jugador" type="number" name="dorsal" min="1" max="99" class="no-spinner">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Posicion</mat-label>
+                    <mat-select [(ngModel)]="jugador.id_posicion" name="posicion">
+                        @for (posicion of posiciones; track posicion) {
+                        <mat-option [value]="posicion.id_posicion">{{posicion.nombre_posicion}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+    <button type="submit" mat-raised-button>{{ estaEditando ? 'Actualizar' : 'Agregar' }}</button>
+</form>

@@ -1,0 +1,38 @@
+.textos {
+    color: white;
+    margin-left: 10%;
+}
+
+mat-form-field {
+    width: 30%;
+    margin-left: 10%;
+}
+
+table {
+    width: 100%;
+}
+
+.tabla {
+    width: 70%;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.mensaje-error{
+    color: white;
+    font-style: italic;
+    width: 100%;
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}
+
+.boton_submit{
+    left: 35%;
+    margin-top: 30px;
+    width: 30%;
+}
